@@ -30,25 +30,31 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.twitterClient.webView = self.webView;
+    
+    self.oauth1Client.webView = self.webView;
         
 }
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.twitterClient.webView = self.webView;
+    self.oauth1Client.webView = self.webView;
+    if ([self.accessMethod length] == 0) {
+        self.accessMethod = @"POST";
+    }
     
     // Your application will be sent to the background until the user authenticates, and then the app will be brought back using the callback URL
-    [_twitterClient authorizeUsingOAuthWithRequestTokenPath:@"oauth/request_token" userAuthorizationPath:@"oauth/authorize" callbackURL:[NSURL URLWithString:@"af-twitter://success"] accessTokenPath:@"oauth/access_token" accessMethod:@"POST" success:^(AFOAuth1Token *accessToken) {
+    [_oauth1Client authorizeUsingOAuthWithRequestTokenPath:self.requestTokenPath
+                                     userAuthorizationPath:self.userAuthorizationPath
+                                               callbackURL:self.callbackURL
+                                           accessTokenPath:self.accessTokenPath
+                                              accessMethod:self.accessMethod
+                                                   success:^(AFOAuth1Token *accessToken) {
         NSLog(@"Success: %@", accessToken);
         NSLog(@"Your OAuth credentials are now set in the `Authorization` HTTP header");
         
-        [_twitterClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
-        [_twitterClient getPath:@"1/statuses/user_timeline.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSArray *responseArray = (NSArray *)responseObject;
-            [responseArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                NSLog(@"obj: %@", obj);
-            }];
+        [_oauth1Client registerHTTPOperationClass:[AFJSONRequestOperation class]];
+        [_oauth1Client getPath:self.successRequestPath parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"response = %@",responseObject);
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"error: %@", error);
         }];

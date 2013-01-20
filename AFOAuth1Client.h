@@ -52,6 +52,9 @@ typedef enum {
 @property (nonatomic, copy) NSString *realm;
 @property (nonatomic, strong) AFOAuth1Token *accessToken;
 @property (nonatomic, strong) NSString *oauthAccessMethod;
+
+
+
 #ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
 @property (nonatomic, strong) UIWebView * webView;
 #endif
@@ -62,6 +65,7 @@ typedef enum {
                   key:(NSString *)key
                secret:(NSString *)secret;
 
+
 - (void)authorizeUsingOAuthWithRequestTokenPath:(NSString *)requestTokenPath
                           userAuthorizationPath:(NSString *)userAuthorizationPath
                                     callbackURL:(NSURL *)callbackURL
@@ -69,6 +73,7 @@ typedef enum {
                                    accessMethod:(NSString *)accessMethod
                                         success:(void (^)(AFOAuth1Token *accessToken))success 
                                         failure:(void (^)(NSError *error))failure;
+
 
 - (void)acquireOAuthRequestTokenWithPath:(NSString *)path
                                 callback:(NSURL *)url

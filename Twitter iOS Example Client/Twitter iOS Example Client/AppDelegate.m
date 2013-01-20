@@ -28,8 +28,26 @@
 {    
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     OAuthWebViewController *controller = (OAuthWebViewController *)navigationController.topViewController;
-    self.twitterClient = [[AFOAuth1Client alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.twitter.com/"] key:@"4oFCF0AjP4PQDUaCh5RQ" secret:@"NxAihESVsdUXSUxtHrml2VBHA0xKofYKmmGS01KaSs"];
-    controller.twitterClient = self.twitterClient;
+/*   self.twitterClient = [[AFOAuth1Client alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.twitter.com/"] key:@"4oFCF0AjP4PQDUaCh5RQ" secret:@"NxAihESVsdUXSUxtHrml2VBHA0xKofYKmmGS01KaSs"];
+    
+    controller.oauth1Client = self.twitterClient;
+    controller.requestTokenPath = @"oauth/request_token";
+    controller.userAuthorizationPath = @"oauth/authorize";
+    controller.callbackURL = [NSURL URLWithString:@"af-twitter://success"];
+    controller.accessTokenPath = @"oauth/access_token"; 
+    controller.accessMethod = @"POST";
+    controller.successRequestPath = @"1/statuses/user_timeline.json"; */
+
+    
+   self.tumblrClient = [[AFOAuth1Client alloc] initWithBaseURL:[NSURL URLWithString:@"http://api.tumblr.com/"] key:@"X1iuXVQzoJJ21gVEudUFgPGedk6a19GdOJ2K0Gc10wGkJTQGi7" secret:@"O0jk94WniCdPEoheUVAAtyyRJhktBSEkNN05SGGX2Po8O4PMK7"];
+    self.tumblrClient.oauthAccessMethod = @"GET";
+    controller.oauth1Client = self.tumblrClient;
+    controller.requestTokenPath = @"http://www.tumblr.com/oauth/request_token";
+    controller.userAuthorizationPath = @"http://www.tumblr.com/oauth/authorize";
+    controller.callbackURL = [NSURL URLWithString:@"pushvine://tumblr/success"];
+    controller.accessTokenPath = @"http://www.tumblr.com/oauth/access_token";
+    controller.accessMethod = @"GET";
+    controller.successRequestPath = @"v2/user/dashboard";
     
     return YES;
 }
