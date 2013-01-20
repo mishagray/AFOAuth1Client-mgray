@@ -1,4 +1,5 @@
-# AFOAuth1Client
+AFOAuth1Client-mgray
+====================
 
 > _This is still in early stages of development, so proceed with caution when using this in a production application.  
 > Any bug reports, feature requests, or general feedback at this point would be greatly appreciated._
