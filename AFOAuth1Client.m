@@ -69,7 +69,7 @@ static inline NSString * AFEncodeBase64WithData(NSData *data) {
 static inline NSDictionary * AFParametersFromQueryString(NSString *queryString) {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     if (queryString) {
-        NSScanner *parameterScanner = [[[NSScanner alloc] initWithString:queryString] autorelease];
+        NSScanner *parameterScanner = [[NSScanner alloc] initWithString:queryString];
         NSString *name = nil;
         NSString *value = nil;
         
@@ -153,7 +153,8 @@ static inline NSString * AFNounce() {
     CFUUIDRef uuid = CFUUIDCreate(NULL);
     CFStringRef string = CFUUIDCreateString(NULL, uuid);
     CFRelease(uuid);
-    return [(NSString *)string autorelease];
+    NSString * ret = CFBridgingRelease(string);
+    return ret;
 }
 
 static inline NSString * NSStringFromAFOAuthSignatureMethod(AFOAuthSignatureMethod signatureMethod) {
@@ -230,11 +231,17 @@ static inline NSString * AFSignatureUsingMethodWithSignatureWithConsumerSecretAn
 
 @end
 
+#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
+@interface AFOAuth1Client () <UIWebViewDelegate>
+#else
 @interface AFOAuth1Client ()
+#endif
 @property (readwrite, nonatomic, copy) NSString *key;
 @property (readwrite, nonatomic, copy) NSString *secret;
 @property (readwrite, nonatomic, copy) NSString *serviceProviderIdentifier;
 @property (strong, readwrite, nonatomic) AFOAuth1Token *currentRequestToken;
+@property (strong, readwrite, nonatomic) NSURL * callbackUrl;
+@property (strong, readwrite, nonatomic) void (^urlResponseBlock)(NSURL * tokenRedirectUrl);
 
 - (void) signCallPerAuthHeaderWithPath:(NSString *)path 
                          andParameters:(NSDictionary *)parameters 
@@ -275,14 +282,6 @@ static inline NSString * AFSignatureUsingMethodWithSignatureWithConsumerSecretAn
     return self;
 }
 
-- (void)dealloc {
-    [_key release];
-    [_secret release];
-    [_serviceProviderIdentifier release];
-    [_realm release];
-    [super dealloc];
-}
-
 - (void)authorizeUsingOAuthWithRequestTokenPath:(NSString *)requestTokenPath
                           userAuthorizationPath:(NSString *)userAuthorizationPath
                                     callbackURL:(NSURL *)callbackURL
@@ -292,10 +291,9 @@ static inline NSString * AFSignatureUsingMethodWithSignatureWithConsumerSecretAn
                                         failure:(void (^)(NSError *error))failure
 {
     [self acquireOAuthRequestTokenWithPath:requestTokenPath callback:callbackURL accessMethod:(NSString *)accessMethod success:^(AFOAuth1Token *requestToken) {
+        self.callbackUrl = callbackURL;
         self.currentRequestToken = requestToken;
-        [[NSNotificationCenter defaultCenter] addObserverForName:kAFApplicationLaunchedWithURLNotification object:nil queue:self.operationQueue usingBlock:^(NSNotification *notification) {
-            
-            NSURL *url = [[notification userInfo] valueForKey:kAFApplicationLaunchOptionsURLKey];
+        [self setUrlResponseBlock:^(NSURL * url) {
             NSLog(@"URL: %@", url);
             
             self.currentRequestToken.verifier = [url AF_getParamNamed:@"oauth_verifier"];
@@ -308,17 +306,42 @@ static inline NSString * AFSignatureUsingMethodWithSignatureWithConsumerSecretAn
                 }
             } failure:failure];
         }];
+        [[NSNotificationCenter defaultCenter] addObserverForName:kAFApplicationLaunchedWithURLNotification object:nil queue:self.operationQueue usingBlock:^(NSNotification *notification) {
+            
+            NSURL *url = [[notification userInfo] valueForKey:kAFApplicationLaunchOptionsURLKey];
+            if (self.urlResponseBlock)
+                self.urlResponseBlock(url);
+         }];
         
         NSLog(@"Going out");
         
         NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
         [parameters setValue:requestToken.key forKey:@"oauth_token"];
+        NSMutableURLRequest * urlRequest = [self requestWithMethod:@"GET" path:userAuthorizationPath parameters:parameters];
 #if __IPHONE_OS_VERSION_MIN_REQUIRED
-        [[UIApplication sharedApplication] openURL:[[self requestWithMethod:@"GET" path:userAuthorizationPath parameters:parameters] URL]];
+        if (self.webView) {
+            self.webView.delegate = self;
+            [self.webView loadRequest:urlRequest];
+        }
+        else {
+            [[UIApplication sharedApplication] openURL:[urlRequest URL]];
+        }
 #else
-        [[NSWorkspace sharedWorkspace] openURL:[[self requestWithMethod:@"GET" path:userAuthorizationPath parameters:parameters] URL]];
+        [[NSWorkspace sharedWorkspace] openURL:[urlRequest URL]];
 #endif
     } failure:failure];
+}
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if (webView == self.webView) {
+        if ([request.URL.host isEqualToString:self.callbackUrl.host]) {
+            if (self.urlResponseBlock) {
+                self.urlResponseBlock(request.URL);
+                return NO;
+            }
+        }
+    }
+    return YES;
 }
 
 - (void)acquireOAuthRequestTokenWithPath:(NSString *)path
@@ -374,7 +397,7 @@ static inline NSString * AFSignatureUsingMethodWithSignatureWithConsumerSecretAn
         NSLog(@"Success: %@", operation.responseString);
         
         if (success) {
-            AFOAuth1Token *requestToken = [[[AFOAuth1Token alloc] initWithQueryString:operation.responseString] autorelease];
+            AFOAuth1Token *requestToken = [[AFOAuth1Token alloc] initWithQueryString:operation.responseString];
             success(requestToken);
         }
     };
@@ -438,7 +461,7 @@ static inline NSString * AFSignatureUsingMethodWithSignatureWithConsumerSecretAn
         NSLog(@"Success: %@", operation.responseString);
         
         if (success) {
-            AFOAuth1Token *accessToken = [[[AFOAuth1Token alloc] initWithQueryString:operation.responseString] autorelease];
+            AFOAuth1Token *accessToken = [[AFOAuth1Token alloc] initWithQueryString:operation.responseString];
             self.accessToken = accessToken;
             success(accessToken);
         }

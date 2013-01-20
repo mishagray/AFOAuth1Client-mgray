@@ -52,6 +52,9 @@ typedef enum {
 @property (nonatomic, copy) NSString *realm;
 @property (nonatomic, strong) AFOAuth1Token *accessToken;
 @property (nonatomic, strong) NSString *oauthAccessMethod;
+#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
+@property (nonatomic, strong) UIWebView * webView;
+#endif
 
 // TODO set Nonce generator block property?
 

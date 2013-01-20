@@ -13,17 +13,19 @@
 		3B6767EB15C98E6E0018828B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3B6767E915C98E6E0018828B /* InfoPlist.strings */; };
 		3B6767ED15C98E6E0018828B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6767EC15C98E6E0018828B /* main.m */; };
 		3B6767F115C98E6E0018828B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6767F015C98E6E0018828B /* AppDelegate.m */; };
-		3B67680D15C98E9C0018828B /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6767F915C98E9C0018828B /* AFHTTPClient.m */; };
-		3B67680E15C98E9C0018828B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6767FB15C98E9C0018828B /* AFHTTPRequestOperation.m */; };
-		3B67680F15C98E9C0018828B /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6767FD15C98E9C0018828B /* AFImageRequestOperation.m */; };
-		3B67681015C98E9C0018828B /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6767FF15C98E9C0018828B /* AFJSONRequestOperation.m */; };
-		3B67681115C98E9C0018828B /* AFJSONUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B67680115C98E9C0018828B /* AFJSONUtilities.m */; };
-		3B67681215C98E9C0018828B /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B67680315C98E9C0018828B /* AFNetworkActivityIndicatorManager.m */; };
-		3B67681315C98E9C0018828B /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B67680615C98E9C0018828B /* AFPropertyListRequestOperation.m */; };
-		3B67681415C98E9C0018828B /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B67680815C98E9C0018828B /* AFURLConnectionOperation.m */; };
-		3B67681515C98E9C0018828B /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B67680A15C98E9C0018828B /* AFXMLRequestOperation.m */; };
-		3B67681615C98E9C0018828B /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B67680C15C98E9C0018828B /* UIImageView+AFNetworking.m */; };
+		3B67680D15C98E9C0018828B /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6767F915C98E9C0018828B /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3B67680E15C98E9C0018828B /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6767FB15C98E9C0018828B /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3B67680F15C98E9C0018828B /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6767FD15C98E9C0018828B /* AFImageRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3B67681015C98E9C0018828B /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6767FF15C98E9C0018828B /* AFJSONRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3B67681115C98E9C0018828B /* AFJSONUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B67680115C98E9C0018828B /* AFJSONUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3B67681215C98E9C0018828B /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B67680315C98E9C0018828B /* AFNetworkActivityIndicatorManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3B67681315C98E9C0018828B /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B67680615C98E9C0018828B /* AFPropertyListRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3B67681415C98E9C0018828B /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B67680815C98E9C0018828B /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3B67681515C98E9C0018828B /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B67680A15C98E9C0018828B /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3B67681615C98E9C0018828B /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B67680C15C98E9C0018828B /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3B67681915C98EB40018828B /* AFOAuth1Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B67681815C98EB40018828B /* AFOAuth1Client.m */; };
+		7CFDDA7216AC7D4D00D56D28 /* mainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CFDDA7116AC7D4D00D56D28 /* mainStoryboard_iPhone.storyboard */; };
+		7CFDDA7616AC7E6F00D56D28 /* OAuthWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFDDA7516AC7E6F00D56D28 /* OAuthWebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,9 @@
 		3B67680C15C98E9C0018828B /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		3B67681715C98EB40018828B /* AFOAuth1Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFOAuth1Client.h; path = ../../AFOAuth1Client.h; sourceTree = "<group>"; };
 		3B67681815C98EB40018828B /* AFOAuth1Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFOAuth1Client.m; path = ../../AFOAuth1Client.m; sourceTree = "<group>"; };
+		7CFDDA7116AC7D4D00D56D28 /* mainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = mainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		7CFDDA7416AC7E6F00D56D28 /* OAuthWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthWebViewController.h; sourceTree = "<group>"; };
+		7CFDDA7516AC7E6F00D56D28 /* OAuthWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthWebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,11 +111,14 @@
 		3B6767E615C98E6E0018828B /* Twitter iOS Example Client */ = {
 			isa = PBXGroup;
 			children = (
+				3B6767EF15C98E6E0018828B /* AppDelegate.h */,
+				3B6767F015C98E6E0018828B /* AppDelegate.m */,
+				7CFDDA7116AC7D4D00D56D28 /* mainStoryboard_iPhone.storyboard */,
+				7CFDDA7416AC7E6F00D56D28 /* OAuthWebViewController.h */,
+				7CFDDA7516AC7E6F00D56D28 /* OAuthWebViewController.m */,
 				3B67681715C98EB40018828B /* AFOAuth1Client.h */,
 				3B67681815C98EB40018828B /* AFOAuth1Client.m */,
 				3B6767F715C98E9C0018828B /* AFNetworking */,
-				3B6767EF15C98E6E0018828B /* AppDelegate.h */,
-				3B6767F015C98E6E0018828B /* AppDelegate.m */,
 				3B6767E715C98E6E0018828B /* Supporting Files */,
 			);
 			path = "Twitter iOS Example Client";
@@ -208,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B6767EB15C98E6E0018828B /* InfoPlist.strings in Resources */,
+				7CFDDA7216AC7D4D00D56D28 /* mainStoryboard_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +240,7 @@
 				3B67681515C98E9C0018828B /* AFXMLRequestOperation.m in Sources */,
 				3B67681615C98E9C0018828B /* UIImageView+AFNetworking.m in Sources */,
 				3B67681915C98EB40018828B /* AFOAuth1Client.m in Sources */,
+				7CFDDA7616AC7E6F00D56D28 /* OAuthWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +264,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -265,7 +276,7 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -281,11 +292,12 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -303,6 +315,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Twitter iOS Example Client/Twitter iOS Example Client-Prefix.pch";
 				INFOPLIST_FILE = "Twitter iOS Example Client/Twitter iOS Example Client-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -314,6 +327,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Twitter iOS Example Client/Twitter iOS Example Client-Prefix.pch";
 				INFOPLIST_FILE = "Twitter iOS Example Client/Twitter iOS Example Client-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -338,6 +352,7 @@
 				3B6767F615C98E6E0018828B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
